@@ -20,10 +20,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     function scrollToTop(ctx, next) {
       app.scrollPageToTop();
       next();
+
+      switch (ctx.pathname) {
+        case '/':
+          $('a').removeClass('iron-selected');
+          $('a[data-route="home"]').addClass('iron-selected');
+          break;
+        case '/workshop':
+          $('a').removeClass('iron-selected');
+          $('a[data-route="workshop"]').addClass('iron-selected');
+          break;
+        case '/about':
+          $('a').removeClass('iron-selected');
+          $('a[data-route="about"]').addClass('iron-selected');
+          break;
+      }
     }
 
     // Routes
-    page('/home', scrollToTop, function() {
+    page('/', scrollToTop, function() {
       app.route = 'home';
     });
 
